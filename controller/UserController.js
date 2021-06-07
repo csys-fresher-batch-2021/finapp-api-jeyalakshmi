@@ -26,6 +26,12 @@ class UserController {
         }
     }
 
+    static async getUser(req, res) {
+        let phoneno = req.params.phoneno;
+        let result = await UserService.getUser(phoneno);
+        res.send(result);
+    }
+
 }
 
 module.exports = UserController;
