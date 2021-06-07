@@ -4,16 +4,18 @@ const bodyParser = require('body-parser');
 
 require("dotenv").config();
 
+const port = process.env.PORT;
+
 const app = express()
 
 app.use(bodyParser.urlencoded({
-    extended : true
+    extended: true
 }));
 app.use(bodyParser.json());
 
 app.use(express.json());
 app.use(cors());
-const port = process.env.PORT || 9000;
+
 
 const loanController = require('./controller/LoanController');
 const UserController = require('./controller/UserController.js');
@@ -26,6 +28,8 @@ app.get('/api/loantypes/:id', loanController.getLoanById);
 
 //User Routes
 app.post('/api/regusers', UserController.saveUser);
+app.put('/api/regusers/:phoneno', UserController.updateUser);
+
 
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))

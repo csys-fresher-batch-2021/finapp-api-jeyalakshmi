@@ -20,29 +20,35 @@ class UserService {
         let isValidCountry = Validator.validCountry(user.country);
 
 
-        
-        if(!isValidName || !isValidGender || !isValidDob || !isValidAddress || !isValidcity || !isValidPincode || !isValidState || !isValidCountry ){
+
+        if (!isValidName || !isValidGender || !isValidDob || !isValidAddress || !isValidcity || !isValidPincode || !isValidState || !isValidCountry) {
             throw new Error("Please Fill All the Fileds!");
         }
-        else if(!isValidEmail){
+        else if (!isValidEmail) {
             throw new Error("Your Email Id is Not Valid");
         }
-        else if(!isValidPassword){
+        else if (!isValidPassword) {
             throw new Error("Password must contain atleast 8 to 20 characters, at least one lowercase letter, one uppercase letter, one numeric digit, and one special character");
         }
-        else if(!isValidPhoneno){
+        else if (!isValidPhoneno) {
             throw new Error("Your Mobile Number is not Valid");
         }
         else if (isValidName && isValidEmail && isValidPassword && isValidPhoneno && isValidGender && isValidDob && isValidAddress && isValidcity && isValidPincode && isValidState && isValidCountry) {
             let result = await UserDao.checkPhoneNumberExists(isValidPhoneno);
-            if(result.length == 0){
-            let newUser = [user.name, user.email, user.password, user.phoneno, user.gender, user.dob, user.address, user.city, user.pincode, user.state, user.country];
-            return UserDao.newUser(newUser);
+            if (result.length == 0) {
+                let newUser = [user.name, user.email, user.password, user.phoneno, user.gender, user.dob, user.address, user.city, user.pincode, user.state, user.country];
+                return UserDao.newUser(newUser);
             }
-            else{
+            else {
                 throw new Error("Phone Number Already Exists");
             }
         }
+    }
+
+    static updateUser(phoneno, updateUser) {
+
+        return UserDao.update(phoneno, updateUser);
+
     }
 
 }

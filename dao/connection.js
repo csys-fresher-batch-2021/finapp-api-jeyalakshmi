@@ -1,14 +1,14 @@
-const {Pool} = require('pg');
+const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'finapp_db',
-    password: 'Jeya@260400',
-    port: 5432,
-  });
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+});
 
-pool.on('error', (err, client) =>{
+pool.on('error', (err, client) => {
   console.error('Error', err);
 });
 
