@@ -14,6 +14,21 @@ class LoanDao{
             console.log(error);
         }
     }
+
+    static async getLoanById(id){
+        let loanQuery = 'SELECT * FROM loantypes WHERE loan_id = $1';
+        let params = [id];
+        try{
+            let client = await pool.connect();
+            let result = await client.query(loanQuery, params);
+            return result.rows;
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+
 }
 
 module.exports = LoanDao;
