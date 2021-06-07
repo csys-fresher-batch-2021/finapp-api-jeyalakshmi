@@ -36,6 +36,19 @@ class UserDao {
         }
     }
 
+    static async getUser(phoneno) {
+        let getUserQuery = 'SELECT * FROM regusers WHERE phoneno = $1';
+        let params = [phoneno];
+        try {
+            let client = await pool.connect();
+            let result = await client.query(getUserQuery, params);
+            return result.rows;
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
 }
 
 module.exports = UserDao;

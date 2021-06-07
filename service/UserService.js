@@ -51,6 +51,10 @@ class UserService {
 
     }
 
+    static getUser(phoneno) {
+        return UserDao.getUser(phoneno);
+    }
+
 }
 
 module.exports = UserService;
