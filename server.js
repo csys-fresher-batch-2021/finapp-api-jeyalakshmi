@@ -17,8 +17,10 @@ app.use(express.json());
 app.use(cors());
 
 
-const loanController = require('./controller/LoanController');
+const loanController = require('./controller/LoanController.js');
 const UserController = require('./controller/UserController.js');
+const LoginController = require('./controller/LoginController.js');
+
 
 app.get('/', (req, res) => console.log('Welcome to ABC Financial Consultant!'));
 
@@ -31,6 +33,7 @@ app.post('/api/regusers', UserController.saveUser);
 app.put('/api/regusers/:phoneno', UserController.updateUser);
 app.get('/api/regusers/:phoneno', UserController.getUser);
 app.delete('/api/regusers/:phoneno', UserController.deleteUser);
+app.post('/api/regusers/login', LoginController.loginUser);
 
 
 
