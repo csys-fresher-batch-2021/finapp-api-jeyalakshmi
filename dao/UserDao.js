@@ -49,6 +49,20 @@ class UserDao {
         }
     }
 
+    static async delete(phoneno) {
+        let deleteQuery = 'DELETE FROM regusers WHERE phoneno = $1';
+        let params = [phoneno];
+        try {
+            let client = await pool.connect();
+            let result = client.query(deleteQuery, params);
+            return result;
+            console.log("User Deleted Successfully");
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
 }
 
 module.exports = UserDao;

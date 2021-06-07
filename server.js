@@ -30,6 +30,7 @@ app.get('/api/loantypes/:id', loanController.getLoanById);
 app.post('/api/regusers', UserController.saveUser);
 app.put('/api/regusers/:phoneno', UserController.updateUser);
 app.get('/api/regusers/:phoneno', UserController.getUser);
+app.delete('/api/regusers/:phoneno', UserController.deleteUser);
 
 
 
