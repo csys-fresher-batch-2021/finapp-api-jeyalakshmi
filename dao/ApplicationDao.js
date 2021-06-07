@@ -1,17 +1,29 @@
 let pool = require('./connection.js');
 
-class ApplicationDao{
-    static async saveApplication(loanDetails, application){
+class ApplicationDao {
+    static async saveApplication(loanDetails, application) {
         let applicationQuery = 'INSERT INTO application (loan_id, loan_name, phoneno, amount) VALUES ($1, $2, $3, $4)';
         let params = [application.loan_id, application.loan_name, application.phoneno, application.amount];
 
-        try{
+        try {
             let client = await pool.connect();
             let result = await client.query(applicationQuery, params);
             console.log("Application Submitted Successfully");
             return result;
         }
-        catch(err){
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+    static async getApplications() {
+        let getQuery = 'SELECT * FROM application';
+        try {
+            let client = await pool.connect();
+            let result = await client.query(getQuery);
+            return result.rows;
+        }
+        catch (err) {
             console.log(err);
         }
     }
