@@ -20,6 +20,7 @@ app.use(cors());
 const loanController = require('./controller/LoanController.js');
 const UserController = require('./controller/UserController.js');
 const LoginController = require('./controller/LoginController.js');
+const ApplicationController = require('./controller/ApplicationController.js');
 
 
 app.get('/', (req, res) => console.log('Welcome to ABC Financial Consultant!'));
@@ -34,6 +35,9 @@ app.put('/api/regusers/:phoneno', UserController.updateUser);
 app.get('/api/regusers/:phoneno', UserController.getUser);
 app.delete('/api/regusers/:phoneno', UserController.deleteUser);
 app.post('/api/regusers/login', LoginController.loginUser);
+
+//Application Routes
+app.post('/api/loantypes/:id/apply', ApplicationController.saveApplication);
 
 
 
