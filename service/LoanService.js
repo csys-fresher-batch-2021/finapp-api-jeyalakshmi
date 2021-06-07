@@ -5,6 +5,10 @@ class LoanService{
         return LoanDao.showAllLoans();
     }
 
+    static getLoanById(id){
+        return LoanDao.getLoanById(id);
+    }
+    
 }
 
 module.exports = LoanService;
