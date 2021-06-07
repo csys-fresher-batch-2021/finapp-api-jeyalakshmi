@@ -32,6 +32,17 @@ class UserController {
         res.send(result);
     }
 
+    static async deleteUser(req, res) {
+        let phoneno = req.params.phoneno;
+        let result = await UserService.deleteUser(phoneno);
+        if (result.rowCount > 0) {
+            res.status(200).json({ message: "User Deleted Successfully" });
+        }
+        else {
+            res.status(400).json({ message: "Failed to Delete User" });
+        }
+    }
+
 }
 
 module.exports = UserController;
