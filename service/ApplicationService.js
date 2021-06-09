@@ -24,6 +24,11 @@ class ApplicationService {
         return ApplicationDao.getApplications();
     }
 
+    static getAllUsersLoanApplicationDetails(){
+        return ApplicationDao.getAllUserLoanApplicationDetails();
+    }
+
+
 }
 
 module.exports = ApplicationService;

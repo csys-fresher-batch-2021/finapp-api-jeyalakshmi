@@ -32,13 +32,17 @@ app.get('/api/loantypes/:id', loanController.getLoanById);
 //User Routes
 app.post('/api/regusers', UserController.saveUser);
 app.put('/api/regusers/:phoneno', UserController.updateUser);
+app.get('/api/regusers/application', ApplicationController.getAllUsersLoanApplicationDetails);
 app.get('/api/regusers/:phoneno', UserController.getUser);
 app.delete('/api/regusers/:phoneno', UserController.deleteUser);
 app.post('/api/regusers/login', LoginController.loginUser);
 
+
 //Application Routes
 app.post('/api/loantypes/:id/apply', ApplicationController.saveApplication);
 app.get('/api/application', ApplicationController.getApplications);
+
+
 
 
 
