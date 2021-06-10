@@ -68,6 +68,19 @@ class ApplicationDao {
         }
     }
 
+    static async getApplicationByPhoneNumber(phoneno){
+        let getQuery = 'SELECT * FROM application WHERE phoneno = $1';
+        let params = [phoneno];
+        try{
+            let client = await pool.connect();
+            let result = await client.query(getQuery, params);
+            return result.rows;
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
 }
 
 module.exports = ApplicationDao;
