@@ -24,6 +24,10 @@ class ApplicationService {
         return ApplicationDao.getApplications();
     }
 
+    static async getApplicationByLoanId(loan_id){
+        return ApplicationDao.getApplicationByLoanId(loan_id);
+    }
+
     static getAllUsersLoanApplicationDetails(){
         return ApplicationDao.getAllUserLoanApplicationDetails();
     }
