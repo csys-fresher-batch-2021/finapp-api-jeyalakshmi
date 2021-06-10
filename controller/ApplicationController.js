@@ -25,6 +25,17 @@ class ApplicationController {
         res.json(result);
     }
 
+    static async updateApplication(req, res){
+        let phoneno = req.params.phoneno;
+        let result = await ApplicationService.updateApplication(phoneno, req.body);
+        if(result != null){
+            res.status(200).json({message : "Successfully Updates"});
+        }
+        else{
+            res.status(400).json({message : "Failed to Update"});
+        }
+    }
+
     static async getAllUsersLoanApplicationDetails(req, res){
         let result = await ApplicationService.getAllUsersLoanApplicationDetails();
         res.status(200).json(result);

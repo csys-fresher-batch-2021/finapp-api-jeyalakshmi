@@ -28,6 +28,10 @@ class ApplicationService {
         return ApplicationDao.getApplicationByLoanId(loan_id);
     }
 
+    static updateApplication(phoneno, application){
+        return ApplicationDao.updateApplication(phoneno, application);
+    }
+
     static getAllUsersLoanApplicationDetails(){
         return ApplicationDao.getAllUserLoanApplicationDetails();
     }
