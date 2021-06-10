@@ -19,15 +19,15 @@ class ApplicationController {
         res.json(result);
     }
 
+    static async getApplicationByLoanId(req, res){
+        let loan_id = req.params.loan_id;
+        let result = await ApplicationService.getApplicationByLoanId(loan_id);
+        res.json(result);
+    }
+
     static async getAllUsersLoanApplicationDetails(req, res){
-        //let phoneno = req.params.phoneno;
         let result = await ApplicationService.getAllUsersLoanApplicationDetails();
-        //if(result != null){
         res.status(200).json(result);
-        //}
-        //else{
-        //    res.status(400).json({message : "Failed to Get Data"});
-       // }
     }
 
 }
