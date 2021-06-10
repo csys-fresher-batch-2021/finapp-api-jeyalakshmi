@@ -40,6 +40,10 @@ class ApplicationService {
         return ApplicationDao.getApplicationByPhoneNumber(phoneno);
     }
 
+    static removeApplication(phoneno){
+        return ApplicationDao.removeApplication(phoneno);
+    }
+
 }
 
 module.exports = ApplicationService;
