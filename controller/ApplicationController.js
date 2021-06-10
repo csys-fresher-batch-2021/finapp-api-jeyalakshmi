@@ -52,6 +52,17 @@ class ApplicationController {
         }
     }
 
+    static async removeApplication(req, res){
+        let phoneno = req.params.phoneno;
+        let result = await ApplicationService.removeApplication(phoneno);
+        if(result.rowCount > 0){
+            res.status(200).json({message : "Application Removed Successfully"});
+        }
+        else{
+            res.status(400).json({message : "Failed to Remove Application"});
+        }
+    }
+
 }
 
 module.exports = ApplicationController;

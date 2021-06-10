@@ -2,8 +2,8 @@ let pool = require('./connection.js');
 
 class ApplicationDao {
     static async saveApplication(loanDetails, application) {
-        let applicationQuery = 'INSERT INTO application (loan_id, loan_name, phoneno, amount, gram, acre) VALUES ($1, $2, $3, $4, $5, $6)';
-        let params = [application.loan_id, application.loan_name, application.phoneno, application.amount, application.gram, application.acre];
+        let applicationQuery = 'INSERT INTO application (loan_id, loan_name, phoneno, amount, gram, acre, months) VALUES ($1, $2, $3, $4, $5, $6, $7)';
+        let params = [application.loan_id, application.loan_name, application.phoneno, application.amount, application.gram, application.acre, application.months];
 
         try {
             let client = await pool.connect();
@@ -42,8 +42,8 @@ class ApplicationDao {
     }
 
     static async updateApplication(phoneno, application){
-        let updateQuery = 'UPDATE application SET loan_id = $1, loan_name = $2, amount = $3, gram = $4, acre = $5 WHERE phoneno = $6';
-        let params = [application.loan_id, application.loan_name, application.amount, application.gram, application.acre, phoneno];
+        let updateQuery = 'UPDATE application SET loan_id = $1, loan_name = $2, amount = $3, gram = $4, acre = $5, amount = $6 WHERE phoneno = $7';
+        let params = [application.loan_id, application.loan_name, application.amount, application.gram, application.acre, application.months, phoneno];
         try{
             let client = await pool.connect();
             let result = await client.query(updateQuery, params);
@@ -56,7 +56,7 @@ class ApplicationDao {
     }
 
     static async getAllUserLoanApplicationDetails(){
-        let getUserQuery = `SELECT regusers.name, regusers.email, regusers.phoneno, regusers.address, regusers.city, regusers.pincode, application.loan_id, application.loan_name, application.amount, application.gram, application.acre FROM regusers FULL JOIN application ON regusers.phoneno = application.phoneno`;
+        let getUserQuery = `SELECT regusers.name, regusers.email, regusers.phoneno, regusers.address, regusers.city, regusers.pincode, application.loan_id, application.loan_name, application.amount, application.gram, application.acre, application.months FROM regusers FULL JOIN application ON regusers.phoneno = application.phoneno`;
         try{
             let client = await pool.connect();
             let result = await client.query(getUserQuery);
@@ -75,6 +75,20 @@ class ApplicationDao {
             let client = await pool.connect();
             let result = await client.query(getQuery, params);
             return result.rows;
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+    static async removeApplication(phoneno){
+        let removeQuery = 'DELETE FROM application WHERE phoneno = $1';
+        let params = [phoneno];
+        try{
+            let client = await pool.connect();
+            let result = client.query(removeQuery, params);
+            return result;
+            console.log("Application Removed Successfully");
         }
         catch(err){
             console.log(err);
