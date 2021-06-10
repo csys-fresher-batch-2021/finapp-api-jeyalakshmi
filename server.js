@@ -41,6 +41,7 @@ app.post('/api/regusers/login', LoginController.loginUser);
 //Application Routes
 app.post('/api/loantypes/:id/apply', ApplicationController.saveApplication);
 app.get('/api/application', ApplicationController.getApplications);
+app.get('/api/application/:phoneno', ApplicationController.getApplicationByPhoneNumber);
 app.get('/api/application/:loan_id', ApplicationController.getApplicationByLoanId);
 app.put('/api/application/:phoneno', ApplicationController.updateApplication);
 

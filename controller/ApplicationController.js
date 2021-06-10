@@ -41,6 +41,17 @@ class ApplicationController {
         res.status(200).json(result);
     }
 
+    static async getApplicationByPhoneNumber(req, res){
+        let phoneno = req.params.phoneno;
+        let result = await ApplicationService.getApplicationByPhoneNumber(phoneno);
+        if(result != 0){
+            res.status(200).json(result);
+        }
+        else{
+            res.status(400).json({message : "Failed to Get Data Check the Phone Number"});
+        }
+    }
+
 }
 
 module.exports = ApplicationController;

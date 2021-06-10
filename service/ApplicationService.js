@@ -36,6 +36,9 @@ class ApplicationService {
         return ApplicationDao.getAllUserLoanApplicationDetails();
     }
 
+    static getApplicationByPhoneNumber(phoneno){
+        return ApplicationDao.getApplicationByPhoneNumber(phoneno);
+    }
 
 }
 
